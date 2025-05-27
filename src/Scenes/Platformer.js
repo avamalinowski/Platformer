@@ -41,10 +41,7 @@ class Platformer extends Phaser.Scene {
             collides: true
         });
 
-        // TODO: Add createFromObjects here
-        //find coins in the "Objects" layer in Phaser
-        //Look for them by finding objects with the name "coin"
-        //assign the coin texture from the tilemap_sheet sprite sheet
+     
         
 
         //Audio courtesy of Terraria, "Underground" theme downloaded from https://archive.org/details/05-underground/05+Underground.mp3
@@ -80,9 +77,6 @@ class Platformer extends Phaser.Scene {
             frame: 163
         });
 
-        //this.spring = this.physics.add.sprite(this.springObj.x, this.springObj.y, "tilemap_sheet",  163);
-        ///this.spring.body.setAllowGravity(false);
-        ///this.spring.body.setImmovable(true);
         
 
         this.spawnObj = this.map.findObject("Objects", (obj) => obj.name === "spawnPoint");
@@ -100,14 +94,7 @@ class Platformer extends Phaser.Scene {
         this.chest.body.setAllowGravity(false);
         this.chest.body.setImmovable(true);
 
-        //this.anims.create({
-        //    key: 'spawnAnim',
-        //    frames: this.anims.generateFrameNumbers('tilemap_sheet',
-        //        {start: 111, end: 112}
-        //    ),
-        //    frameRate: 3,
-        //    repeat: -1
-        //});
+        
         this.anims.create({
             key: 'springAnim',
             frames: this.anims.generateFrameNumbers('tilemap_sheet',
@@ -122,9 +109,7 @@ class Platformer extends Phaser.Scene {
             ),
             frameRate: 3,
         });
-        //this.anims.play('coinAnim', this.coins);
-        //this.anims.play('spawnAnim', this.spawnPoint);
-
+        
         
         // TODO: Add turn into Arcade Physics here
         this.physics.world.enable(this.coins, Phaser.Physics.Arcade.STATIC_BODY);
@@ -214,11 +199,7 @@ class Platformer extends Phaser.Scene {
             this.physics.world.debugGraphic.clear()
         }, this);
 
-        this.groundLayer.renderDebug(this.add.graphics(), {
-            tileColor: null, // Non-colliding tiles
-            collidingTileColor: new Phaser.Display.Color(243, 134, 48, 200), // Colliding tiles
-            faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Colliding face edges
-        });
+        
         my.vfx = {};
         // TODO: Add movement vfx here
         my.vfx.walking = this.add.particles(0,0, "kenny-particles", {
@@ -286,8 +267,7 @@ class Platformer extends Phaser.Scene {
         if(!my.sprite.player.body.blocked.down) {
             my.sprite.player.anims.play('jump');
             this.jumpAudio.play({volume: 1.0});
-            //my.vfx.jump.startFollow(my.sprite.player, my.sprite.player.displayHeight/2-5, false);
-            //my.vfx.jump.start();
+            
         }
         if(my.sprite.player.body.blocked.down && Phaser.Input.Keyboard.JustDown(cursors.up)) {
             my.sprite.player.body.setVelocityY(this.JUMP_VELOCITY);
@@ -304,8 +284,7 @@ class Platformer extends Phaser.Scene {
             this.myAudio.stop();
             this.scene.restart();
         }
-        //console.log(my.sprite.player.y);
-        //console.log(this.spawnPoint.x);
+        
         if ((my.sprite.player.y > this.map.heightInPixels) || (my.sprite.player.x > this.map.widthInPixels)){
             if (this.spawnPointCheck == true){
                 my.sprite.player.x = this.spawnPoint.x;
