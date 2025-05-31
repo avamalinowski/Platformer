@@ -16,14 +16,14 @@
 let config = {
     parent: 'phaser-game',
     type: Phaser.CANVAS,
-    tileBias: 25,
+    tileBias: 28,
     render: {
         pixelArt: true  // prevent pixel art from getting blurred when scaled
     },
     physics: {
         default: 'arcade',
         arcade: {
-            tileBias: 25,
+            tileBias: 28,
             debug: true,
             gravity: {
                 x: 0,
